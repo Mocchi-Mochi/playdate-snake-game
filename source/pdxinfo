@@ -1,0 +1,6 @@
+name=Snake Game
+author=TauchMe
+description=This is a basic game
+bundleID=com.tauchme.snake
+version=0.1.0
+buildNumber=1
