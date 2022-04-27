@@ -21,4 +21,5 @@ Version 1: [############################======================]
 Version 2: [==================================================]
 
 ✗ Create a ```Game Over``` screen
+
 ✗ A sound plays when a point is eaten
