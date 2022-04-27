@@ -1,12 +1,12 @@
 # playdate-snake-game
 
-Version 1: [##############====================================]
+Version 1: [#####################=============================]
 
 ✓ Snake can move
 
 ✓ Make snake go a bit slower
 
-✗ Game repeats if snake is out of the screen
+✓ Game repeats if snake is out of the screen
 
 ✗ Snake can eat points
 
