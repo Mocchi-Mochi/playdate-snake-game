@@ -1,12 +1,13 @@
 -- SNAKE GAME
 
 import "CoreLibs/graphics"
---import "CoreLibs/object"
+
 local gfx <const> = playdate.graphics
 
 local posX = 0
 local posY = 0
 local lastButtonPressed = 0 -- 0 RIGHT, 1 LEFT, 2 UP, 3 DOWN
+local velocity = 10 -- This are the FPS. Max 30
 
 function buttonPressed()
 	if (playdate.buttonIsPressed(playdate.kButtonRight) and lastButtonPressed ~= 1) then
@@ -42,6 +43,7 @@ function playdate.update()
 	end
 	
 	gfx.fillRect(posX, posY, 10, 10)
+	playdate.display.setRefreshRate(10)
 end
 
 function playdate.leftButtonDown() leftDown = true end
