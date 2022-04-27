@@ -2,13 +2,13 @@
 
 Version 1 Progress bar
 
-[########==========================================]
+[#################=================================]
 
 ---
 
 ✓ Snake can move
 
-✗ Make snake go a bit slower
+✓ Make snake go a bit slower
 
 ✗ Game over if out of screen
 
