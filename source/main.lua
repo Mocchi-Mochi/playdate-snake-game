@@ -8,6 +8,7 @@ local posX = 0
 local posY = 0
 local lastButtonPressed = 0 -- 0 RIGHT, 1 LEFT, 2 UP, 3 DOWN
 local velocity = 10 -- This are the FPS. Max 30
+local point = {-1 , 0}
 
 function buttonPressed()
 	if (playdate.buttonIsPressed(playdate.kButtonRight) and lastButtonPressed ~= 1) then
@@ -34,9 +35,14 @@ function restartGame()
 	velocity = 10
 end
 
+function setNewPoint()
+	point[1] = math.random(39) * 10
+	point[2] = math.random(23) * 10
+end
+
 function playdate.update()
 	gfx.clear()
-	
+
 	buttonPressed()
 	
 	if (lastButtonPressed == 0) then
@@ -53,7 +59,13 @@ function playdate.update()
 		restartGame()
 	end
 	
-	gfx.fillRect(posX, posY, 10, 10)
+	if posX == point[1] and posY == point[2] or point[1] == -1 then
+		setNewPoint()
+	end
+	
+	gfx.fillRect(posX, posY, 10, 10) -- This is the snake
+	gfx.fillRect(point[1], point[2], 10, 10) -- This is the point the snake has to eat
+	
 	playdate.display.setRefreshRate(10)
 end
 
