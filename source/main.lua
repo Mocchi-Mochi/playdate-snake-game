@@ -27,6 +27,13 @@ function buttonPressed()
 	end
 end
 
+function restartGame()
+	posX = 0
+	posY = 0
+	lastButtonPressed = 0
+	velocity = 10
+end
+
 function playdate.update()
 	gfx.clear()
 	
@@ -40,6 +47,10 @@ function playdate.update()
 		posY -= 10
 	elseif (lastButtonPressed == 3) then
 		posY += 10
+	end
+	
+	if posX < 0 or posX > 400 or posY < 0 or posY > 240 then
+		restartGame()
 	end
 	
 	gfx.fillRect(posX, posY, 10, 10)
