@@ -1,6 +1,6 @@
 # playdate-snake-game
 
-Version 1: [###########################################=======]
+Version 1: [##################################################]
 
 ✓ Snake can move
 
@@ -14,7 +14,7 @@ Version 1: [###########################################=======]
 
 ✓ Game repeats if snake eats itself
 
-✗ Game goes faster each time the snake eats a point
+✓ Game goes faster each time the snake eats a point
 
 ---
 

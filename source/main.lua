@@ -70,6 +70,7 @@ function checkIfPointWasEaten()
 		point[1] = math.random(39) * 10
 		point[2] = math.random(23) * 10
 		table.insert(tail, {posX, posY})
+		if velocity <= 30 then velocity += 1 end
 	end
 end
 
@@ -109,7 +110,7 @@ function playdate.update()
 	
 	printOnScreen()
 	
-	playdate.display.setRefreshRate(10)
+	playdate.display.setRefreshRate(velocity)
 end
 
 function playdate.leftButtonDown() leftDown = true end
