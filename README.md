@@ -1,6 +1,6 @@
 # playdate-snake-game
 
-Version 1: [############################======================]
+Version 1: [####################################==============]
 
 ✓ Snake can move
 
@@ -10,7 +10,7 @@ Version 1: [############################======================]
 
 ✓ Snake can eat points
 
-✗ Snake can get bigger
+✓ Snake can get bigger
 
 ✗ Game repeats if snake eats itself
 
@@ -20,6 +20,6 @@ Version 1: [############################======================]
 
 Version 2: [==================================================]
 
-✗ Create a ```Game Over``` screen
+✗ Create a `Game Over` screen
 
 ✗ A sound plays when a point is eaten
