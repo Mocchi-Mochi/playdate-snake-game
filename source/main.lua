@@ -7,8 +7,9 @@ local gfx <const> = playdate.graphics
 local posX = 0
 local posY = 0
 local lastButtonPressed = 0 -- 0 RIGHT, 1 LEFT, 2 UP, 3 DOWN
-local velocity = 10 -- This are the FPS. Max 30
-local point = {-1 , 0}
+local velocity = 1 -- This are the FPS. Max 30
+local point = {}
+local tail = {}
 
 function buttonPressed()
 	if (playdate.buttonIsPressed(playdate.kButtonRight) and lastButtonPressed ~= 1) then
@@ -28,23 +29,7 @@ function buttonPressed()
 	end
 end
 
-function restartGame()
-	posX = 0
-	posY = 0
-	lastButtonPressed = 0
-	velocity = 10
-end
-
-function setNewPoint()
-	point[1] = math.random(39) * 10
-	point[2] = math.random(23) * 10
-end
-
-function playdate.update()
-	gfx.clear()
-
-	buttonPressed()
-	
+function makeSnakeMove()
 	if (lastButtonPressed == 0) then
 		posX += 10
 	elseif (lastButtonPressed == 1) then
@@ -54,17 +39,59 @@ function playdate.update()
 	elseif (lastButtonPressed == 3) then
 		posY += 10
 	end
-	
+end
+
+function checkIfSnakeIsOutOfScreen()
 	if posX < 0 or posX > 400 or posY < 0 or posY > 240 then
-		restartGame()
+		posX = 0
+		posY = 0
+		lastButtonPressed = 0
+		velocity = 10
 	end
-	
-	if posX == point[1] and posY == point[2] or point[1] == -1 then
-		setNewPoint()
+end
+
+function checkIfPointWasEaten()
+	if posX == point[1] and posY == point[2] or point[1] == nil then
+		point[1] = math.random(39) * 10
+		point[2] = math.random(23) * 10
+		table.insert(tail, {posX, posY})
 	end
-	
-	gfx.fillRect(posX, posY, 10, 10) -- This is the snake
+end
+
+function printTail()
+	for i = 1, #tail do
+		if i == #tail then
+			tail[#tail + 1 - i][1] = posX
+			tail[#tail + 1 - i][2] = posY
+		else
+			tail[#tail + 1 - i][1] = tail[#tail - i][1]
+			tail[#tail + 1 - i][2] = tail[#tail - i][2]
+		end
+	end
+	for i = 1, #tail do
+	  gfx.fillRect(tail[i][1], tail[i][2], 10, 10)
+	end
+end
+
+function printOnScreen()
+	gfx.clear()
+	gfx.fillRect(posX, posY, 10, 10) -- This is the snake's head
 	gfx.fillRect(point[1], point[2], 10, 10) -- This is the point the snake has to eat
+	
+	printTail() -- This is the snake's body
+	
+end
+
+function playdate.update()
+	buttonPressed()
+	
+	makeSnakeMove()
+	
+	checkIfSnakeIsOutOfScreen()
+	
+	checkIfPointWasEaten()
+	
+	printOnScreen()
 	
 	playdate.display.setRefreshRate(10)
 end
