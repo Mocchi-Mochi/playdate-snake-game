@@ -7,7 +7,7 @@ local gfx <const> = playdate.graphics
 local posX = 0
 local posY = 0
 local lastButtonPressed = 0 -- 0 RIGHT, 1 LEFT, 2 UP, 3 DOWN
-local velocity = 1 -- This are the FPS. Max 30
+local velocity = 10 -- This are the FPS. Max 30
 local point = {}
 local tail = {}
 
@@ -29,6 +29,15 @@ function buttonPressed()
 	end
 end
 
+function restart()
+	posX = 0
+	posY = 0
+	lastButtonPressed = 0
+	velocity = 10
+	point = {}
+	tail = {}
+end
+
 function makeSnakeMove()
 	if (lastButtonPressed == 0) then
 		posX += 10
@@ -42,11 +51,17 @@ function makeSnakeMove()
 end
 
 function checkIfSnakeIsOutOfScreen()
-	if posX < 0 or posX > 400 or posY < 0 or posY > 240 then
-		posX = 0
-		posY = 0
-		lastButtonPressed = 0
-		velocity = 10
+	if posX < 0 or posX >= 400 or posY < 0 or posY >= 240 then
+		restart()
+	end
+end
+
+function checkIfSnakeHasEatenItself()
+	for i = 1, #tail do
+		if posX == tail[i][1] and posY == tail[i][2] then
+			restart()
+			return
+		end
 	end
 end
 
@@ -88,6 +103,7 @@ function playdate.update()
 	makeSnakeMove()
 	
 	checkIfSnakeIsOutOfScreen()
+	checkIfSnakeHasEatenItself()
 	
 	checkIfPointWasEaten()
 	
