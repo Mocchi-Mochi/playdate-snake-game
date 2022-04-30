@@ -1,25 +1,14 @@
 # playdate-snake-game
 
-Version 1: [##################################################]
+<p align="center">
+  <img src="https://i.imgur.com/uzDGwGw.png">
+</p>
 
-✓ Snake can move
-
-✓ Make snake go a bit slower
-
-✓ Game repeats if snake is out of the screen
-
-✓ Snake can eat points
-
-✓ Snake can get bigger
-
-✓ Game repeats if snake eats itself
-
-✓ Game goes faster each time the snake eats a point
+### Download the game [here](https://github.com/Mocchi-Mochi/playdate-snake-game/releases/tag/playdate-snake-v1)
 
 ---
 
-Version 2: [==================================================]
+**Version 2 progress: [==================================================]**
 
-✗ Create a `Game Over` screen
-
-✗ A sound plays when a point is eaten
+- [ ] Create a `Game Over` screen
+- [ ] A sound plays when a point is eaten
