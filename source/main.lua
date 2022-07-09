@@ -11,6 +11,9 @@ local velocity = 10 -- This are the FPS. Max 30
 local point = {}
 local tail = {}
 
+local eatSound = playdate.sound.sampleplayer.new("assets/eat.wav")
+local initState = true
+
 function buttonPressed()
 	if (playdate.buttonIsPressed(playdate.kButtonRight) and lastButtonPressed ~= 1) then
 		lastButtonPressed = 0
@@ -36,6 +39,7 @@ function restart()
 	velocity = 10
 	point = {}
 	tail = {}
+	initState = true
 end
 
 function makeSnakeMove()
@@ -67,6 +71,8 @@ end
 
 function checkIfPointWasEaten()
 	if posX == point[1] and posY == point[2] or point[1] == nil then
+		if initState == false then eatSound:play() end
+		initState = false
 		point[1] = math.random(39) * 10
 		point[2] = math.random(23) * 10
 		table.insert(tail, {posX, posY})
