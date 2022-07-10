@@ -8,9 +8,9 @@
 
 ---
 
-**Version 2 progress: [#################=================================]**
+**Version 2 progress: [##################################================]**
 
-- [ ] Create a `Game Over` screen
+- [x] Create a `Game Over` screen
 - [ ] Background chill music
 - [x] A sound plays when a point is eaten
 
