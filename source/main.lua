@@ -11,7 +11,7 @@ local velocity = 10 -- This are the FPS. Max 30
 local point = {}
 local tail = {}
 
-local eatSound = playdate.sound.sampleplayer.new("assets/eat.wav")
+local eatSound = playdate.sound.sampleplayer.new("assets/eat")
 local initState = true
 
 function buttonPressed()
