@@ -1,7 +1,7 @@
 # playdate-snake-game
 
 <p align="center">
-  <img src="https://i.imgur.com/uzDGwGw.png">
+  <img src="https://i.imgur.com/BntL9Vg.png">
 </p>
 
 ### Download the game [here](https://github.com/Mocchi-Mochi/playdate-snake-game/releases/tag/playdate-snake-v1)
