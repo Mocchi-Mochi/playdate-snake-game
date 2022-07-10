@@ -13,10 +13,20 @@ local velocity = 10 -- This are the FPS. Max 30
 local point = {}
 local tail = {}
 local score = 0
+local highscore
 local gameRunning = true
 
 local eatSound = playdate.sound.sampleplayer.new("assets/eat")
 local initState = true
+
+local data = playdate.datastore.read()
+if data == nil then
+	playdate.datastore.write({ highscore = score })
+	highscore = score
+else
+	highscore = data['highscore']
+end
+
 
 function buttonPressed()
 	if (playdate.buttonIsPressed(playdate.kButtonRight) and lastButtonPressed ~= 1) then
@@ -50,20 +60,22 @@ end
 
 function gameOver()
 	gameRunning = false
-	local str
+
 	gfx.setColor(gfx.kColorWhite)
 	gfx.fillRoundRect(75, 50, 250, 140, 10)
+
 	gfx.setColor(gfx.kColorBlack)
 	gfx.drawRoundRect(75, 50, 250, 140, 10)
 	gfx.fillRoundRect(80, 55, 240, 130, 10)
-	str = '*GAME OVER*'
-	gfx.drawText(str, 400 / 2 - gfx.getTextSize(str) / 2, 70)
+	gfx.drawText('*GAME OVER*', 400 / 2 - gfx.getTextSize('*GAME OVER*') / 2, 70)
 
 	gfx.drawText('Score:', 140, 100)
-	gfx.drawText(tostring(score), 240, 100)
+	gfx.drawText(tostring(score), 260 - gfx.getTextSize(tostring(score)), 100)
 
-	str = 'Press A to restart'
-	gfx.drawText(str, 400 / 2 - gfx.getTextSize(str) / 2, 155)
+	gfx.drawText('Highscore:', 140, 120)
+	gfx.drawText(tostring(highscore), 260 - gfx.getTextSize(tostring(highscore)), 120)
+
+	gfx.drawText('Press A to restart', 400 / 2 - gfx.getTextSize('Press A to restart') / 2, 155)
 
 	if playdate.buttonIsPressed(playdate.kButtonA) then restart() end
 
@@ -101,6 +113,10 @@ function checkIfPointWasEaten()
 		if initState == false then
 			eatSound:play()
 			score += 1
+			if score > highscore then
+				highscore = score
+				playdate.datastore.write({ highscore = highscore })
+			end
 		else
 			initState = false
 		end
