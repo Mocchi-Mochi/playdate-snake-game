@@ -17,6 +17,10 @@ local highscore
 local gameRunning = true
 
 local eatSound = playdate.sound.sampleplayer.new("assets/eat")
+local backgroundSoundFile = "assets/background_sound"
+local backgroundSound = playdate.sound.fileplayer.new(backgroundSoundFile)
+backgroundSound:play(0)
+
 local initState = true
 
 local data = playdate.datastore.read()
@@ -56,11 +60,21 @@ function restart()
 	score = 0
 	initState = true
 	gameRunning = true
+	backgroundSound:setRate(1)
+	backgroundSound:setVolume(1)
+	backgroundSound:load(backgroundSoundFile)
+	backgroundSound:play(0)
 end
 
 function gameOver()
 	gameRunning = false
-
+	local volume = backgroundSound:getVolume()
+	if volume <= 0.1 then
+		backgroundSound:stop()
+	else
+		backgroundSound:setRate(backgroundSound:getRate() - 0.1)
+		backgroundSound:setVolume(volume - 0.15)
+	end
 	gfx.setColor(gfx.kColorWhite)
 	gfx.fillRoundRect(75, 50, 250, 140, 10)
 
