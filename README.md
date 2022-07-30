@@ -4,14 +4,9 @@
   <img src="https://i.imgur.com/BntL9Vg.png">
 </p>
 
-### Download the game [here](https://github.com/Mocchi-Mochi/playdate-snake-game/releases/tag/playdate-snake-v1)
-
+##### Background music by: [8 Bit And Chill](https://www.patreon.com/8bitandchill)
 ---
 
-**Version 2 progress: [##################################================]**
-
-- [x] Create a `Game Over` screen
-- [ ] Background chill music
-- [x] A sound plays when a point is eaten
+### Download the game [here](https://github.com/Mocchi-Mochi/playdate-snake-game/releases/tag/playdate-snake-v2)
 
 <p align="right"><a href="https://ko-fi.com/K3K281ONV" target="_blank"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="ko-fi"></a></p>
